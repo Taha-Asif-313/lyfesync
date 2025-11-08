@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+:root{
+  --primary : #00ba0f;
+}
+
+@theme{
+  --color-primary : var(--primary);
+}
+
 body{
     font-family: "Libre Franklin", sans-serif;
 }

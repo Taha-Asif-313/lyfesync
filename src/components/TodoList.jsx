@@ -2,7 +2,7 @@
 import React, { useContext, useState, useMemo } from "react";
 import { Search, ListTodo, Sparkles } from "lucide-react";
 import TodoCard from "./TodoCard";
-import TodoContext from "../Context/todoContext";
+import TodoContext from "../context/todoContext";
 
 const TodoList = () => {
   const { todoList, deleteTodo, completeTodo } = useContext(TodoContext);
@@ -20,7 +20,7 @@ const TodoList = () => {
   }, [todoList, searchQuery]);
 
   return (
-    <div className="min-h-screen w-full px-5 py-20 bg-gradient-to-b from-black via-zinc-950 to-zinc-900 text-white overflow-hidden">
+    <div className="min-h-screen w-full px-5 py-20 bg-linear-to-b from-black via-zinc-950 to-zinc-900 text-white overflow-hidden">
       {/* Header Section */}
       <div className="max-w-5xl mx-auto flex flex-col items-center gap-2 text-center">
         <div className="flex items-center gap-4">
@@ -82,19 +82,19 @@ const TodoList = () => {
           <div
             className="relative flex flex-wrap justify-center items-center gap-10 mt-10
                        before:content-[''] before:absolute before:top-1/2 before:left-0 before:right-0 
-                       before:h-[3px] before:bg-gradient-to-r from-primary/50 via-primary/10 to-transparent 
+                       before:h-[3px] before:bg-linear-to-r from-primary/50 via-primary/10 to-transparent 
                        before:rounded-full before:-z-10 before:blur-[2px]"
           >
             {filteredTodos.map((task, index) => (
               <div
                 key={index}
-                className="relative flex-shrink-0 w-80 group transition-all"
+                className="relative shrink-0 w-80 group transition-all"
               >
                 {/* ✨ Shining Connector Line to Next Card */}
                 {index !== filteredTodos.length - 1 && (
                   <span
                     className="absolute right-[-45px] top-1/2 w-[50px] h-[3px] rounded-full 
-               bg-gradient-to-r from-primary via-lime-500 to-primary
+               bg-linear-to-r from-primary via-lime-500 to-primary
                animate-shine"
                   ></span>
                 )}

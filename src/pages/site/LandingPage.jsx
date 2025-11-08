@@ -14,7 +14,7 @@ import {
   ShieldCheck,
   Heart,
 } from "lucide-react";
-import HeroContent from "../../Components/HeroContent";
+import HeroContent from "../../components/HeroContent";
 
 const LandingPage = () => {
   const reduceMotion = useReducedMotion();
@@ -30,7 +30,7 @@ const LandingPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-4 bg-gradient-to-r from-[#00ba0f] to-lime-400 bg-clip-text text-transparent"
+          className="text-4xl font-bold mb-4 bg-linear-to-r from-[#00ba0f] to-lime-400 bg-clip-text text-transparent"
         >
           Why LifeSync?
         </motion.h2>
@@ -78,7 +78,7 @@ const LandingPage = () => {
             key={i}
             whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.3 }}
-            className="p-8 bg-gradient-to-br from-zinc-900/60 to-zinc-950 border border-zinc-800 rounded-2xl shadow-xl hover:shadow-[0_0_20px_rgba(0,255,160,0.08)]"
+            className="p-8 bg-linear-to-br from-zinc-900/60 to-zinc-950 border border-zinc-800 rounded-2xl shadow-xl hover:shadow-[0_0_20px_rgba(0,255,160,0.08)]"
           >
             <item.icon className="w-10 h-10 text-[#00ba0f] mb-4" />
             <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
@@ -88,7 +88,7 @@ const LandingPage = () => {
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="relative py-24 bg-gradient-to-br from-[#00ba0f]/10 via-black to-[#00ba0f]/10 text-center overflow-hidden">
+      <section className="relative py-24 bg-linear-to-br from-[#00ba0f]/10 via-black to-[#00ba0f]/10 text-center overflow-hidden">
         <div className="relative z-10 max-w-3xl mx-auto">
           <h2 className="text-4xl font-bold mb-4 text-white">
             Start Planning Smarter with{" "}
@@ -97,7 +97,7 @@ const LandingPage = () => {
           <p className="text-gray-400 mb-8">
             Take charge of your time — one mindful task at a time.
           </p>
-          <button className="px-8 py-4 rounded-2xl bg-gradient-to-r from-[#00ba0f] to-lime-500 font-semibold shadow-xl hover:shadow-[#00ba0f]/30 transition-all duration-300">
+          <button className="px-8 py-4 rounded-2xl bg-linear-to-r from-[#00ba0f] to-lime-500 font-semibold shadow-xl hover:shadow-[#00ba0f]/30 transition-all duration-300">
             Get Started for Free
           </button>
         </div>

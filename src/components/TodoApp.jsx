@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import TodoList from "./TodoList";
 import HeroContent from "./HeroContent";
-import TodoContext from "../Context/todoContext";
+import TodoContext from "../context/todoContext";
 
 const TodoApp = () => {
   const { todoList } = useContext(TodoContext);

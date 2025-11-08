@@ -58,7 +58,7 @@ const TodoCard = ({ Task, CompleteTodo, DeleteTodo, EditTodo }) => {
 
   return (
     <li
-      className={`group relative w-full border border-zinc-800 bg-gradient-to-br from-zinc-950 via-black to-zinc-950
+      className={`group relative w-full border border-zinc-800 bg-linear-to-br from-zinc-950 via-black to-zinc-950
                   rounded-2xl px-5 py-5 flex flex-col gap-3 transition-all duration-500
                   hover:shadow-[0_0_25px_rgba(0,255,160,0.2)] hover:scale-[1.015]
                   ${isExpired && !completed ? "opacity-50 cursor-not-allowed" : ""}
@@ -162,7 +162,7 @@ const TodoCard = ({ Task, CompleteTodo, DeleteTodo, EditTodo }) => {
       {!completed && !isExpired && (
         <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden mt-1">
           <div
-            className="h-full bg-gradient-to-r from-primary via-lime-400 to-green-500 transition-all duration-500"
+            className="h-full bg-linear-to-r from-primary via-lime-400 to-green-500 transition-all duration-500"
             style={{ width: `${progress}%` }}
           ></div>
         </div>

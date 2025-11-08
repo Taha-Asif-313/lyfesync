@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import TodoContext from "../Context/todoContext";
+import TodoContext from "../context/todoContext";
 import toast from "react-hot-toast";
 
 const InputFields = ({ Show, setShow }) => {
@@ -67,7 +67,7 @@ const InputFields = ({ Show, setShow }) => {
           {/* Overlay */}
           <div
             onClick={() => setShow(false)}
-            className="fixed inset-0 z-[999] bg-black/60 transition-opacity duration-200"
+            className="fixed inset-0 z-999 bg-black/60 transition-opacity duration-200"
           />
 
           {/* Form Drawer */}
@@ -77,7 +77,7 @@ const InputFields = ({ Show, setShow }) => {
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed bottom-0 left-0 right-0 z-[1000] w-full lg:max-w-full max-w-md mx-auto 
+            className="fixed bottom-0 left-0 right-0 z-1000 w-full lg:max-w-full max-w-md mx-auto 
                        bg-zinc-900 rounded-t-3xl border-t border-[#00ba0f]/40
                        shadow-[0_-2px_20px_rgba(0,186,15,0.2)] p-6 text-white"
           >
@@ -87,7 +87,7 @@ const InputFields = ({ Show, setShow }) => {
               <button
                 type="button"
                 onClick={() => setShow(false)}
-                className="absolute right-0 top-[-4px] text-zinc-400 hover:text-[#00ba0f] transition"
+                className="absolute right-0 -top-1 text-zinc-400 hover:text-[#00ba0f] transition"
               >
                 <X size={24} />
               </button>
@@ -95,7 +95,7 @@ const InputFields = ({ Show, setShow }) => {
 
             {/* Title */}
             <div className="text-center mb-4">
-              <h2 className="text-xl font-semibold bg-gradient-to-r from-[#00ba0f] to-lime-400 bg-clip-text text-transparent">
+              <h2 className="text-xl font-semibold bg-linear-to-r from-[#00ba0f] to-lime-400 bg-clip-text text-transparent">
                 Add New Task
               </h2>
               <p className="text-xs text-zinc-400">Set task details and deadlines below</p>
@@ -173,7 +173,7 @@ const InputFields = ({ Show, setShow }) => {
             {/* Submit */}
             <button
               type="submit"
-              className="w-full mt-5 py-3 rounded-xl bg-gradient-to-r from-[#00ba0f] to-lime-400 
+              className="w-full mt-5 py-3 rounded-xl bg-linear-to-r from-[#00ba0f] to-lime-400 
                          text-black font-semibold text-sm hover:shadow-[0_0_15px_#00ba0f] transition-all"
             >
               Add Task
