@@ -1,6 +1,6 @@
 "use client";
-import React, { useContext, useState, useMemo, useEffect } from "react";
-import { Search, ListTodo, Sparkles } from "lucide-react";
+import React, { useContext, useState, useMemo, useEffect, useCallback } from "react";
+import { Sparkles } from "lucide-react";
 import TodoCard from "./TodoCard";
 import TodoContext from "../context/todoContext";
 import { GetAllTasks } from "../utils/authixInit";
@@ -10,17 +10,31 @@ const TodoList = () => {
     useContext(TodoContext);
   const [searchQuery, setSearchQuery] = useState("");
 
-  useEffect(() => {
-    const fetchTasks = async () => {
+  // 🔁 Fetch Tasks
+  const fetchTasks = useCallback(async () => {
+    try {
       const tasks = await GetAllTasks();
-      console.log(tasks);
-
       setTodoList(tasks);
-    };
-    fetchTasks();
-  }, []);
+    } catch (err) {
+      console.error("Error fetching tasks:", err);
+    }
+  }, [setTodoList]);
 
-  // Filtered Tasks
+  useEffect(() => {
+    fetchTasks();
+  }, [fetchTasks]);
+
+  // 🗑️ Handle Delete and Refresh
+  const handleDelete = async (taskId) => {
+    try {
+      await deleteTodo(taskId);
+      await fetchTasks(); // 🔁 refresh the list after delete
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
+  };
+
+  // 🔍 Filtered Tasks
   const filteredTodos = useMemo(() => {
     return todoList?.filter(
       (todo) =>
@@ -68,19 +82,18 @@ const TodoList = () => {
                 key={index}
                 className="relative shrink-0 w-80 group transition-all"
               >
-                {/* ✨ Shining Connector Line to Next Card */}
+                {/* ✨ Shining Connector Line */}
                 {index !== filteredTodos.length - 1 && (
                   <span
                     className="absolute right-[-45px] top-1/2 w-[50px] h-[3px] rounded-full 
-               bg-linear-to-r from-primary via-lime-500 to-primary
-               animate-shine"
+               bg-linear-to-r from-primary via-lime-500 to-primary animate-shine"
                   ></span>
                 )}
 
                 <TodoCard
                   Task={task}
                   CompleteTodo={completeTodo}
-                  DeleteTodo={deleteTodo}
+                  DeleteTodo={() => handleDelete(task.id)} // 👈 added refresh logic
                 />
               </div>
             ))}

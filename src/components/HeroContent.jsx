@@ -101,10 +101,10 @@ const HeroContent = () => {
             </span>
           </h1>
 
-           <p className="text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-              LifeSync helps you bring structure, focus, and calm to your daily
-              flow — powered by AI, inspired by mindfulness.
-            </p>
+          <p className="text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+            LifeSync helps you bring structure, focus, and calm to your daily
+            flow — powered by AI, inspired by mindfulness.
+          </p>
 
           {/* Features */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl">
@@ -148,11 +148,13 @@ const HeroContent = () => {
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="flex-1 flex justify-center lg:justify-end mt-12 lg:mt-0"
+          className="flex-1 flex justify-center lg:justify-center mt-12 lg:mt-0"
         >
-          <div className="relative p-10 rounded-3xl bg-linear-to-br from-[#00ba0f]/10 via-lime-500/10 to-emerald-500/10 border border-[#00ba0f]/30 backdrop-blur-lg shadow-xl">
-            <ListTodo
-              size={180}
+          <div className="relative rounded-3xl bg-linear-to-br from-[#00ba0f]/10 via-lime-500/10 to-emerald-500/10 backdrop-blur-lg">
+            <img
+              src="/logo.png"
+              height={400}
+              width={400}
               className="text-[#00ba0f] drop-shadow-[0_0_25px_#00ba0f]"
             />
           </div>

@@ -10,11 +10,9 @@ import {
 } from "lucide-react";
 import TodoContext from "../context/todoContext";
 
-const TodoCard = ({ Task }) => {
+const TodoCard = ({ Task, DeleteTodo, CompleteTodo }) => {
   const { title, desc, completed, completeBy, createdAt, priority, category } =
     Task;
-
-  const { deleteTodo, completeTodo } = useContext(TodoContext);
 
   const [remaining, setRemaining] = useState("");
   const [isExpired, setIsExpired] = useState(false);
@@ -22,6 +20,7 @@ const TodoCard = ({ Task }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const deleteScheduled = useRef(false);
 
+  // 🕒 Countdown Timer + Auto Delete
   useEffect(() => {
     const updateTimer = () => {
       const now = new Date();
@@ -36,10 +35,10 @@ const TodoCard = ({ Task }) => {
         setIsExpired(true);
         setProgress(100);
 
-        // ✅ Schedule delete only once
+        // ✅ Schedule delete only once (auto-delete after 5s)
         if (!deleteScheduled.current) {
           deleteScheduled.current = true;
-          setTimeout(() => deleteTodo(Task.id), 5000); // use context method
+          setTimeout(() => DeleteTodo(Task.id), 5000);
         }
       } else {
         const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -53,9 +52,9 @@ const TodoCard = ({ Task }) => {
     updateTimer();
     const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
-  }, [createdAt, completeBy, Task, deleteTodo]);
+  }, [createdAt, completeBy, Task, DeleteTodo]);
 
-  // Priority Colors
+  // 🎨 Priority Colors
   const priorityColors = {
     high: "text-red-600 border-red-600 bg-red-600/5",
     normal: "text-yellow-400 border-yellow-400/30 bg-yellow-500/10",
@@ -65,19 +64,19 @@ const TodoCard = ({ Task }) => {
   // ✅ Handlers
   const handleComplete = async () => {
     try {
-      await completeTodo(Task.id);
+      await CompleteTodo(Task.id);
       setMenuOpen(false);
     } catch (err) {
-      console.error(err);
+      console.error("Error completing task:", err);
     }
   };
 
   const handleDelete = async () => {
     try {
-      await deleteTodo(Task.id);
+      await DeleteTodo(Task.id);
       setMenuOpen(false);
     } catch (err) {
-      console.error(err);
+      console.error("Error deleting task:", err);
     }
   };
 
@@ -85,7 +84,7 @@ const TodoCard = ({ Task }) => {
     <li
       className={`group relative w-full border border-zinc-800 bg-linear-to-br from-zinc-950 via-black to-zinc-950
                   rounded-2xl px-5 py-5 flex flex-col gap-3 transition-all duration-500
-                  hover:shadow-[0_0_25px_rgba(0,255,160,0.2)] hover:scale-[1.015]
+                  hover:shadow-[0_0_25px_var(--primary)] hover:scale-[1.015]
                   ${
                     isExpired && !completed
                       ? "opacity-50 cursor-not-allowed"

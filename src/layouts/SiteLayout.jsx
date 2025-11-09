@@ -18,7 +18,7 @@ const SiteLayout = () => {
       <Navbar />
 
       {/* 📄 Page Content */}
-      <main className="relative z-10">
+      <main className="relative z-10 w-full">
         <Outlet />
       </main>
 
